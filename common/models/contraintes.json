@@ -1,0 +1,42 @@
+{
+  "name": "contraintes",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "attribut": {
+      "type": "string",
+      "required": true
+    },
+    "valeur": {
+      "type": "string",
+      "required": true
+    },
+    "comparaison": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "batiment": {
+      "type": "hasMany",
+      "model": "batiment",
+      "foreignKey": ""
+    },
+    "etage": {
+      "type": "hasMany",
+      "model": "etage",
+      "foreignKey": ""
+    },
+    "couloir": {
+      "type": "hasMany",
+      "model": "couloir",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

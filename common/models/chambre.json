@@ -1,0 +1,35 @@
+{
+  "name": "chambre",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "numChambre": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "positions": {
+      "type": "hasMany",
+      "model": "position",
+      "foreignKey": ""
+    },
+    "etudiants": {
+      "type": "hasMany",
+      "model": "etudiant",
+      "foreignKey": "",
+      "through": "reservation"
+    },
+    "etages": {
+      "type": "belongsTo",
+      "model": "etage",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

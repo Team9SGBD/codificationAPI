@@ -1,0 +1,52 @@
+{
+  "name": "etudiant",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "numEtudiant": {
+      "type": "string",
+      "required": true
+    },
+    "prenomEtudiant": {
+      "type": "string",
+      "required": true
+    },
+    "nomEtudiant": {
+      "type": "string",
+      "required": true
+    },
+    "datenaissance": {
+      "type": "date"
+    },
+    "genre": {
+      "type": "string",
+      "required": true
+    },
+    "departement": {
+      "type": "string",
+      "required": true
+    },
+    "formation": {
+      "type": "string",
+      "required": true
+    },
+    "niveau": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "reserver": {
+      "type": "hasMany",
+      "model": "chambre",
+      "foreignKey": "",
+      "through": "reservation"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
