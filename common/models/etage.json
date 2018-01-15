@@ -1,29 +1,55 @@
 {
-  "name": "etage",
+  "name": "Etage",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "idEtage": {
-      "type": "string",
+    "numetage": {
+      "type": "number",
       "required": true
     }
   },
   "validations": [],
   "relations": {
-    "couloirs": {
+    "coulois": {
       "type": "hasMany",
-      "model": "couloir",
-      "foreignKey": ""
+      "model": "Couloir",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     },
-    "batiment": {
-      "type": "belongsTo",
-      "model": "batiment",
-      "foreignKey": ""
+    "contraintes": {
+      "type": "hasMany",
+      "model": "Contraintes",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "reservations": {
+      "isStatic": false,
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "reservations",
+          "type": "object",
+          "root": true,
+          "description": "Le Tableau des chambres avec leurs positions occuppées "
+        }
+      ],
+      "description": "renvoie l'ensembles des chambres et leurs positions occuppées",
+      "http": [
+        {
+          "path": "/reservations",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

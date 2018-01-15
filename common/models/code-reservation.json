@@ -1,20 +1,16 @@
 {
-  "name": "Contraintes",
+  "name": "CodeReservation",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "attribut": {
+    "idReservation": {
       "type": "string",
       "required": true
     },
-    "valeur": {
-      "type": "string",
-      "required": true
-    },
-    "comparaison": {
+    "codeReservation": {
       "type": "string",
       "required": true
     }

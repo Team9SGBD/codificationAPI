@@ -14,8 +14,7 @@
     ]
   },
   "User": {
-    "dataSource": "db",
-    "public": false
+    "dataSource": "db"
   },
   "AccessToken": {
     "dataSource": "db",
@@ -36,36 +35,40 @@
     "dataSource": "db",
     "public": false
   },
-  "etudiant": {
-    "dataSource": "mysql",
+  "Account": {
+    "dataSource": "mongodb",
     "public": true
   },
-  "contraintes": {
-    "dataSource": "mysql",
+  "Etudiant": {
+    "dataSource": "mongodb",
     "public": true
   },
-  "batiment": {
-    "dataSource": "mysql",
+  "Batiment": {
+    "dataSource": "mongodb",
     "public": true
   },
-  "etage": {
-    "dataSource": "mysql",
+  "Etage": {
+    "dataSource": "mongodb",
     "public": true
   },
-  "couloir": {
-    "dataSource": "mysql",
+  "Couloir": {
+    "dataSource": "mongodb",
     "public": true
   },
-  "chambre": {
-    "dataSource": "mysql",
+  "Chambre": {
+    "dataSource": "mongodb",
     "public": true
   },
-  "reservation": {
-    "dataSource": "mysql",
+  "Reservation": {
+    "dataSource": "mongodb",
     "public": true
   },
-  "account": {
-    "dataSource": "mysql",
+  "Contraintes": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "CodeReservation": {
+    "dataSource": "mongodb",
     "public": true
   }
 }

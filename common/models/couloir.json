@@ -1,22 +1,33 @@
 {
-  "name": "couloir",
+  "name": "Couloir",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "numCouloir": {
-      "type": "string",
+    "numcouloir": {
+      "type": "number",
       "required": true
     }
   },
   "validations": [],
   "relations": {
+    "contraintes": {
+      "type": "hasMany",
+      "model": "Contraintes",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
     "chambres": {
       "type": "hasMany",
-      "model": "chambre",
-      "foreignKey": ""
+      "model": "Chambre",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [],

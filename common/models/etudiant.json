@@ -1,27 +1,31 @@
 {
-  "name": "etudiant",
+  "name": "Etudiant",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
+    "prenom": {
+      "type": "string",
+      "required": true
+    },
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "dateNaiss": {
+      "type": "date",
+      "required": true
+    },
+    "villeNaiss": {
+      "type": "string"
+    },
     "numEtudiant": {
       "type": "string",
       "required": true
     },
-    "prenomEtudiant": {
-      "type": "string",
-      "required": true
-    },
-    "nomEtudiant": {
-      "type": "string",
-      "required": true
-    },
-    "datenaissance": {
-      "type": "date"
-    },
-    "genre": {
+    "numCIN": {
       "type": "string",
       "required": true
     },
@@ -39,14 +43,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "reserver": {
-      "type": "hasMany",
-      "model": "chambre",
-      "foreignKey": "",
-      "through": "reservation"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

@@ -3,28 +3,14 @@
     "name": "db",
     "connector": "memory"
   },
-  "mysql": {
+  "mongodb": {
     "host": "localhost",
-    "port": 3306,
+    "port": 0,
     "url": "",
-    "database": "db_codif",
-    "password": "passer",
-    "name": "mysql",
-    "user": "root",
-    "connector": "mysql"
-  },
-  "email": {
-    "name": "email",
-    "connector": "mail",
-  "transports": [{
-    "type": "SMTP",
-    "host": "smtp.gmail.com",
-    "secure": true,
-    "port": 465,
-    "auth": {
-      "user": "codificationcoudesp@gmail.com",
-      "pass": "passer2018"
-    }
-  }]
+    "database": "test_codif",
+    "password": "",
+    "name": "mongodb",
+    "user": "",
+    "connector": "mongodb"
   }
 }

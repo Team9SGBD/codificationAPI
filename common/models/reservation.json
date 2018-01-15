@@ -1,12 +1,12 @@
 {
-  "name": "reservation",
+  "name": "Reservation",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "date": {
+    "datereserv": {
       "type": "date",
       "required": true
     },
@@ -14,19 +14,29 @@
       "type": "boolean",
       "required": true,
       "default": false
+    },
+    "position": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "position": {
+    "account": {
       "type": "belongsTo",
-      "model": "position",
-      "foreignKey": ""
+      "model": "Account",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     },
-    "etudiant": {
+    "chambre": {
       "type": "belongsTo",
-      "model": "etudiant",
-      "foreignKey": ""
+      "model": "Chambre",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [],
