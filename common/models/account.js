@@ -145,42 +145,4 @@ Account.prototype.confirmerReservation = function(code, callback) {
   };
 
 
-
-
-    /**
-   * reserver une position
-   * @param {string} chambre Id de la position
-   * @param {Function(Error, date)} callback
-   */
-
-  Account.prototype.reserver = function(chambre, callback) {
-    var today = Date.now();
-    today = new Date(today);
-    var id = this.id;
-    app.models.Reservation.count("", function (err, nb) {
-      app.models.Reservation.create({
-        'date': today,
-        'confirme': false,
-        'accountId': id,
-        'chambreId':chambre,
-        'position': nb+1
-      }, function(err, reserv) {
-        var tomorow = new Date(today.getDate() + 1);
-        // send an email
-        Account.sendEmail = function(cb) {
-          Account.app.models.Email.send({
-            to: 'a.faye5273@gmail.com',
-            from: 'codificationcoudesp@gmail.com',
-            subject: 'test nodemailer',
-            text: 'cucu',
-            html: 'my <em>html</em>'
-          }, function(err, mail) {
-            console.log('email sent!');
-            cb(err);
-          });
-        };
-        callback(null, tomorow);
-      });
-    })
-  };
 };

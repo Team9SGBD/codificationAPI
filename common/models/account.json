@@ -52,35 +52,15 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "couloirsAccessibles"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
     }
   ],
   "methods": {
-    "reserver": {
-      "isStatic": false,
-      "accepts": [
-        {
-          "arg": "chambre",
-          "type": "string",
-          "required": false,
-          "description": "Id de la chambre à réserver"
-        }
-      ],
-      "returns": [
-        {
-          "arg": "delai",
-          "type": "date",
-          "root": false,
-          "description": "Le delai pour la confirmation"
-        }
-      ],
-      "description": "Réserver une position dans une chambre",
-      "http": [
-        {
-          "path": "/reserver",
-          "verb": "get"
-        }
-      ]
-    },
     "batimentsAccessibles": {
       "isStatic": false,
       "accepts": [],

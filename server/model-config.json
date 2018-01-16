@@ -14,7 +14,8 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -70,5 +71,9 @@
   "CodeReservation": {
     "dataSource": "mongodb",
     "public": true
-  }
+  },
+  "Email": {
+        "dataSource": "sendmail",
+        "public": false
+    }
 }

@@ -9,6 +9,10 @@
     "nombatiment": {
       "type": "string",
       "required": true
+    },
+    "nbremaxoccupants": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
