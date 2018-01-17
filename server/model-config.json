@@ -38,7 +38,10 @@
   },
   "Account": {
     "dataSource": "mongodb",
-    "public": true
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
   },
   "Etudiant": {
     "dataSource": "mongodb",
@@ -60,10 +63,6 @@
     "dataSource": "mongodb",
     "public": true
   },
-  "Reservation": {
-    "dataSource": "mongodb",
-    "public": true
-  },
   "Contraintes": {
     "dataSource": "mongodb",
     "public": true
@@ -73,7 +72,10 @@
     "public": true
   },
   "Email": {
-        "dataSource": "sendmail",
-        "public": false
-    }
+    "dataSource": "Email"
+  },
+  "Reservation": {
+    "dataSource": "mongodb",
+    "public": true
+  }
 }

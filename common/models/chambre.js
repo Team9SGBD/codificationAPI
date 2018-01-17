@@ -3,6 +3,7 @@
 module.exports = function(Chambre) {
   var app = require('../../server/server');
   var randomstring = require("randomstring");
+  var _ = require("underscore");
   /**
    * renvoie l'ensemble des positions dans une étage donnée
    * @param {string} etage L'etage dans lequel on recherche
@@ -27,7 +28,6 @@ module.exports = function(Chambre) {
 
   Chambre.prototype.reserver = function(accountId, callback) {
     var capacite = this.nbremaxoccupants;
-    console.log(capacite);
     var id = this.id;
     Chambre.app.models.Account.findById(accountId, {include:'reservation'}, function (err, account) {
       var reservation = account.reservation();
@@ -43,27 +43,30 @@ module.exports = function(Chambre) {
             callback(err);
           else if(reservations.length < capacite){
             var today = Date.now();
-            //console.log(reservations);
+            console.log(reservations);
             today = new Date(today);
-            app.models.Reservation.create({
-              'dateReserv': today,
+            Chambre.app.models.Reservation.create({
+              'datereserv': today,
               'confirmation': false,
               'position': reservations.length+1,
               'accountId': accountId,
               'chambreId':id
               
             }, function(err, reserv) {
+              
+              //var idreserv=reserv.id;
+              console.log(reserv.id);
               Chambre.app.models.CodeReservation.create({
-                "idReservation":reserv.id,
-                "codeReservation": randomstring.generate(7)
+                "codeReservation": randomstring.generate(7),
+                "idReservation":reserv.id
               }, function (err, code) {
-                var url_confirmer = 'http://wwww.codification-esp.sn/confirmer-reservation?code='+code.code;
+                var url_confirmer = 'http://wwww.codification-esp.sn/confirmer-reservation?code='+code.codeReservation;
                 const mail = {
                   from: 'codificationcoudesp@gmail.com', // sender address
                   to: account.email, // list of receivers
                   subject: 'Confirmation de votre réservation de chambre', // Subject line
                   html: `<p>Vous avez reservé une chambre au sein du campus ESP</p>
-                    <p>Votre code de confirmation est: <strong>${code.code}</strong></p>
+                    <p>Votre code de confirmation est: <strong>${code.codeReservation}</strong></p>
                     <p>Vous pouvez confirmer en cliquant sur: <a href="${url_confirmer}">${url_confirmer}</a></p>
                     <p><strong>NB:</strong>Vous avez <strong>24h</strong> pour confirmer sinon votre réservation sera <strong>annulée automatiquement!</strong></p>`
                 };

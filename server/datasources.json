@@ -24,14 +24,25 @@
         "secure": true,
         "port": 465,
         "auth": {
-          "user": "name@gmail.com",
-          "pass": "pass"
+          "user": "codificationcoudesp@gmail.com",
+          "pass": "passer2018"
         }
       }
     ]
   },
   "sendmail": {
-        "connector": "loopback-connector-sendmail",
-        "silent": false
-    }
+    "name": "sendmail",
+    "connector": "loopback-connector-sendmail",
+    "silent": false
+  },
+  "mysql": {
+    "host": "localhost",
+    "port": 0,
+    "url": "",
+    "database": "db_codif",
+    "password": "passer",
+    "name": "mysql",
+    "user": "root",
+    "connector": "mysql"
+  }
 }

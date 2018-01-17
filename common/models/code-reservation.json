@@ -12,6 +12,7 @@
     },
     "codeReservation": {
       "type": "string",
+      "id": true,
       "required": true
     }
   },
