@@ -43,6 +43,8 @@
     "password": "passer",
     "name": "mysql",
     "user": "root",
-    "connector": "mysql"
+    "connector": "mysql",
+    "debug": false,
+    "createDatabase": true
   }
 }

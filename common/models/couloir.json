@@ -6,8 +6,8 @@
     "validateUpsert": true
   },
   "properties": {
-    "numcouloir": {
-      "type": "number",
+    "nomcouloir": {
+      "type": "string",
       "required": true
     }
   },

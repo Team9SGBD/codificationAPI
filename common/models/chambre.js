@@ -1,9 +1,17 @@
 'use strict';
 
 module.exports = function(Chambre) {
-  var app = require('../../server/server');
+ 
+
+var app = require('../../server/server');
   var randomstring = require("randomstring");
   var _ = require("underscore");
+
+
+
+
+
+
   /**
    * renvoie l'ensemble des positions dans une étage donnée
    * @param {string} etage L'etage dans lequel on recherche
