@@ -5,58 +5,6 @@ module.exports = function(Account) {
  
   var app = require('../../server/server');
   var f = require('./my_scripts/functions');
-/* Création de de la table account sous mysql
-*/
-
-var accountsql = {
-  "name": "Account",
-  "options":{
-    "idInjection": false,
-    "mysql": {
-      "schema":"LOOPBACK",
-      "table":"ACCOUNT"
-    }
-  },
-  "properties": {
-    "idaccount": {
-      "type": "string",
-      "length": 20,
-      "id": 1
-    },
-    "username":{
-      "type": "string",
-      "length": 20,
-      "required":true
-    },
-    "email": {
-      "type": "string",
-      "required": true,
-      "length": 60,
-      "mysql": {
-        "columnName": "EMAIL",
-        "dataType": "VARCHAR",
-        "dataLength": 60,
-        "nullable": "N"
-      }
-    },
-    "password": {
-      "type": "string",
-      "required": true,
-      "length": 60,
-    }
-  }
-};
-
-/*var ds = require('../data-sources/db')('mysql');
-
-ds.createModel(accountsql.name, accountsql.properties, accountsql.options);
-
-ds.automigrate(function () {
-  ds.discoverModelProperties('ACCOUNT', function (err, props) {
-    console.log(props);
-  });
-});*/  
-
 
 
 

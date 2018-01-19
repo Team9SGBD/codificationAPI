@@ -2,8 +2,7 @@
 
 module.exports = function(Chambre) {
  
-
-var app = require('../../server/server');
+  var app = require('../../server/server');
   var randomstring = require("randomstring");
   var _ = require("underscore");
 
@@ -61,22 +60,19 @@ var app = require('../../server/server');
               'chambreId':id
               
             }, function(err, reserv) {
-              
-              //var idreserv=reserv.id;
-              console.log(reserv.id);
               Chambre.app.models.CodeReservation.create({
                 "codeReservation": randomstring.generate(7),
                 "idReservation":reserv.id
               }, function (err, code) {
                 var url_confirmer = 'http://wwww.codification-esp.sn/confirmer-reservation?code='+code.codeReservation;
                 const mail = {
-                  from: 'codificationcoudesp@gmail.com', // sender address
-                  to: account.email, // list of receivers
-                  subject: 'Confirmation de votre réservation de chambre', // Subject line
-                  html: `<p>Vous avez reservé une chambre au sein du campus ESP</p>
+                  from: 'codificationcoudesp@gmail.com', // addresse source
+                  to: account.email, // adresse destinataire
+                  subject: 'Confirmation de votre réservation de chambre', // objet du mail
+                  html: `<p>Reservation réussie</p>
                     <p>Votre code de confirmation est: <strong>${code.codeReservation}</strong></p>
                     <p>Vous pouvez confirmer en cliquant sur: <a href="${url_confirmer}">${url_confirmer}</a></p>
-                    <p><strong>NB:</strong>Vous avez <strong>24h</strong> pour confirmer sinon votre réservation sera <strong>annulée automatiquement!</strong></p>`
+                    <p><strong>NB:</strong>Vous avez <strong>24h</strong> pour confirmer sinon votre reservation sera <strong>annulee automatiquement!</strong></p>`
                 };
                 console.log(code);
                 Chambre.app.models.Email.send(mail, function (err, info) {
@@ -85,12 +81,12 @@ var app = require('../../server/server');
                     callback(err);
                   }else{
                     var tomorow = new Date(today.getDate() + 1);
-                    callback(null, {delai: tomorow, ok: true});
+                    callback(null, {delai: tomorow, 'ok': true});
                   }
                 });
               });
             });
-          }else callback(null, {erreur: 'Désolé chambre pleine','ok': false});
+          }else callback(null, {erreur: 'Desole la chambre est deja pleine','ok': false});
         });
       }
     })

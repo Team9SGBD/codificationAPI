@@ -6,13 +6,17 @@
     "validateUpsert": true
   },
   "properties": {
+    "idcoderserv": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
     "idReservation": {
       "type": "string",
       "required": true
     },
     "codeReservation": {
       "type": "string",
-      "id": true,
       "required": true
     }
   },
