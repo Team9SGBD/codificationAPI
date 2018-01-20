@@ -6,6 +6,10 @@
     "validateUpsert": true
   },
   "properties": {
+    "numEtudiant": {
+      "type": "string",
+      "required": true
+    },
     "prenom": {
       "type": "string",
       "required": true
@@ -20,10 +24,6 @@
     },
     "villeNaiss": {
       "type": "string"
-    },
-    "numEtudiant": {
-      "type": "string",
-      "required": true
     },
     "numCIN": {
       "type": "string",

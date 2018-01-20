@@ -37,67 +37,59 @@
     "public": false
   },
   "Account": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true,
     "options": {
-      "emailVerificationRequired": true,
-      "remoting":{
-        "sharedMethods":{
-          "*":false,
-          "find":true,
-          "findById":true,
-          "count":true
-        }
-      }
+      "emailVerificationRequired": true
     }
   },
   "Etudiant": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true
   },
   "Batiment": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true
   },
   "Etage": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true
   },
   "Couloir": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true
   },
   "Chambre": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true
   },
   "Contraintes": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true
   },
   "CodeReservation": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true
   },
   "Email": {
     "dataSource": "Email"
   },
   "Reservation": {
-    "dataSource": "mysql",
+    "dataSource": "mongodb",
     "public": true,
-    "options":{
-      "remoting":{
-        "sharedMethods":{
-          "*":false,
-          "find":true,
-          "findById":true,
-          "count":true
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "find": true,
+          "findById": true,
+          "count": true
         }
       }
     }
+  },
+  "PeriodeCodification": {
+    "dataSource": "mongodb",
+    "public": true
   }
-
-
-
-
 }

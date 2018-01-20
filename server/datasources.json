@@ -4,14 +4,15 @@
     "connector": "memory"
   },
   "mongodb": {
-    "host": "localhost",
+    "host": "",
     "port": 0,
-    "url": "",
-    "database": "test_codif",
+    "url": "mongodb://bams:passer@ds153577.mlab.com:53577/db_codif",
+    "database": "db_codif",
     "password": "",
     "name": "mongodb",
     "user": "",
-    "connector": "mongodb"
+    "connector": "mongodb",
+    "connectTimeout": 10000000
   },
   "Email": {
     "name": "Email",
@@ -36,15 +37,16 @@
     "silent": false
   },
   "mysql": {
-    "host": "localhost",
-    "port": 0,
+    "host": "db4free.net",
+    "port": 3306,
     "url": "",
     "database": "db_codif",
-    "password": "passer",
+    "password": "nana1995",
     "name": "mysql",
-    "user": "root",
+    "user": "bams",
     "connector": "mysql",
     "debug": false,
-    "createDatabase": true
+    "createDatabase": true,
+    "connectTimeout": 100000
   }
 }

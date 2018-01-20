@@ -1,17 +1,17 @@
 {
-  "name": "CodeReservation",
+  "name": "PeriodeCodification",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "idReservation": {
-      "type": "number",
+    "datedebut": {
+      "type": "date",
       "required": true
     },
-    "codeReservation": {
-      "type": "string",
+    "datefin": {
+      "type": "date",
       "required": true
     }
   },
