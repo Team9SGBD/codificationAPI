@@ -35,18 +35,5 @@
     "name": "sendmail",
     "connector": "loopback-connector-sendmail",
     "silent": false
-  },
-  "mysql": {
-    "host": "db4free.net",
-    "port": 3306,
-    "url": "",
-    "database": "db_codif",
-    "password": "nana1995",
-    "name": "mysql",
-    "user": "bams",
-    "connector": "mysql",
-    "debug": false,
-    "createDatabase": true,
-    "connectTimeout": 100000
   }
 }

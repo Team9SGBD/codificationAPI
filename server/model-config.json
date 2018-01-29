@@ -91,5 +91,13 @@
   "PeriodeCodification": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "Critere": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Echange": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }

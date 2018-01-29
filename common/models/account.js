@@ -1,10 +1,44 @@
 'use strict';
 
-
+var config = require('../../server/config.json');
+var path = require('path');
 module.exports = function(Account) {
  
   var app = require('../../server/server');
   var f = require('./my_scripts/functions');
+
+//send verification email after registration
+  Account.afterRemote('create', function(context, accountInstance, next) {
+    console.log('> Account.afterRemote triggered');
+
+    var options = {
+      type: 'email',
+      to: accountInstance.email,
+      from: 'codificationcoudesp@gmail.com',
+      subject: 'Thanks for registering.',
+      template: path.resolve(__dirname, '../../server/server.js'),
+      redirect: '/verified',
+      user: Account
+    };
+
+    accountInstance.verify(options, function(err, response) {
+      if (err) {
+        Account.deleteById(accountInstance.id); 
+        return next(err);
+      }
+
+      console.log('> verification email sent:', response);
+
+      context.res.render('response', {
+        title: 'Signed up successfully',
+        content: 'Please check your email and click on the verification link ' -
+            'before logging in.',
+        redirectTo: '/',
+        redirectToLinkText: 'Log in'
+      });
+    });
+  });
+
 
 
 
