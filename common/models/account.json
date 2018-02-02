@@ -27,12 +27,6 @@
   },
   "acls": [
     {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW"
-    },
-    {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
       "principalId": "$everyone",
@@ -57,13 +51,22 @@
       "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$everyone",
-      "permission": "ALLOW"
+      "permission": "ALLOW",
+      "property": "login"
     },
     {
-      "accessType": "*",
+      "accessType": "EXECUTE",
       "principalType": "ROLE",
       "principalId": "$everyone",
-      "permission": "ALLOW"
+      "permission": "ALLOW",
+      "property": "login"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "login"
     }
   ],
   "methods": {
@@ -112,32 +115,6 @@
         }
       ]
     },
-    "couloirsAccessibles": {
-      "isStatic": false,
-      "accepts": [
-        {
-          "arg": "etage",
-          "type": "string",
-          "required": true,
-          "description": "L'id de l'etage dans lequel on recherche des couloirs accessibles"
-        }
-      ],
-      "returns": [
-        {
-          "arg": "couloirs",
-          "type": "string",
-          "root": true,
-          "description": "Le tableau des couloirs accessibles de l'étage"
-        }
-      ],
-      "description": "Donne les couloirs qui sont accessibles pour un etage donné",
-      "http": [
-        {
-          "path": "/couloirs_Accessibles",
-          "verb": "get"
-        }
-      ]
-    },
     "confirmerReservation": {
       "isStatic": false,
       "accepts": [
@@ -160,6 +137,25 @@
       "http": [
         {
           "path": "/confirmer_Reservation",
+          "verb": "get"
+        }
+      ]
+    },
+    "chambresAccessibles": {
+      "isStatic": false,
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "batimentdispo",
+          "type": "object",
+          "root": true,
+          "description": "tableau des batiments disponibles inclus leurs etages et leurs chambres"
+        }
+      ],
+      "description": "retourne l'ensemble des batiments disponibles en y incluant les etages et les chambres pour un etudiant donne",
+      "http": [ 
+        {
+        "path": "/chambres_Accessibles",
           "verb": "get"
         }
       ]

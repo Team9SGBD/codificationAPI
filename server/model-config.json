@@ -55,10 +55,6 @@
     "dataSource": "mongodb",
     "public": true
   },
-  "Couloir": {
-    "dataSource": "mongodb",
-    "public": true
-  },
   "Chambre": {
     "dataSource": "mongodb",
     "public": true

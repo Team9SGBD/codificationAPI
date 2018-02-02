@@ -8,7 +8,32 @@ module.exports = function(Chambre) {
 
 
 
+ /**
+ * l'ensemble des codifiants dans une chambre donnée
+ * 
+ */
 
+  Chambre.prototype.codifiants = function(callback) {
+    Chambre.prototype.reservations((err, reserv) => {
+      if (err)
+        callback(err);
+      var locataires = [];
+      reserv.forEach((r, index, array) => {
+        Chambre.app.models.Account.findById(r.accountId, {include: 'etudiants'}, function(err, account) {
+          locataires.push({
+            reservation: {
+              date: r.date,
+              position: r.position,
+              confirme: r.confirme,
+            },
+            etudiant: account.etudiants(),
+          });
+          if (index == array.length - 1)
+            callback(null, locataires);
+        });
+      });
+    });
+  };
 
 
   /**
@@ -64,7 +89,7 @@ module.exports = function(Chambre) {
                 "codeReservation": randomstring.generate(7),
                 "idReservation":reserv.id
               }, function (err, code) {
-                var url_confirmer = 'http://wwww.codification-esp.sn/confirmer-reservation?code='+code.codeReservation;
+                var url_confirmer = 'http://localhost:8080/confirmer-reservation?code='+code.codeReservation;
                 const mail = {
                   from: 'codificationcoudesp@gmail.com', // addresse source
                   to: account.email, // adresse destinataire
@@ -74,7 +99,6 @@ module.exports = function(Chambre) {
                     <p>Vous pouvez confirmer en cliquant sur: <a href="${url_confirmer}">${url_confirmer}</a></p>
                     <p><strong>NB:</strong>Vous avez <strong>24h</strong> pour confirmer sinon votre reservation sera <strong>annulee automatiquement!</strong></p>`
                 };
-                console.log(code);
                 Chambre.app.models.Email.send(mail, function (err, info) {
                   if(err) {
                     console.log(err);

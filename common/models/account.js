@@ -16,11 +16,10 @@ module.exports = function(Account) {
       to: accountInstance.email,
       from: 'codificationcoudesp@gmail.com',
       subject: 'Thanks for registering.',
-      template: path.resolve(__dirname, '../../server/server.js'),
+      template: path.resolve(__dirname, '../../server/verify.ejs'),
       redirect: '/verified',
-      user: Account
+      user: accountInstance
     };
-
     accountInstance.verify(options, function(err, response) {
       if (err) {
         Account.deleteById(accountInstance.id); 
@@ -29,13 +28,23 @@ module.exports = function(Account) {
 
       console.log('> verification email sent:', response);
 
-      context.res.render('response', {
-        title: 'Signed up successfully',
-        content: 'Please check your email and click on the verification link ' -
-            'before logging in.',
-        redirectTo: '/',
-        redirectToLinkText: 'Log in'
-      });
+      var url_confirmer = 'http://localhost:8080/api/Accounts/confirm?uid='+response.uid+'&token='+response.token;
+        const mail = {
+          from: 'codificationcoudesp@gmail.com', // addresse source
+          to: accountInstance.email, // adresse destinataire
+          subject: 'Confirmation de votre inscription', // objet du mail
+                  html: `<p>INscription réussie</p>
+                  
+                    <p>Vous pouvez confirmer en cliquant sur: <a href="${url_confirmer}">${url_confirmer}</a></p>`
+                  };
+                  console.log(mail);
+        Account.app.models.Email.send(mail ,function (err, info) {
+                  if(err) {
+                    console.log(err);
+                    callback(err);
+                  };
+                }
+        );
     });
   });
 
@@ -85,7 +94,7 @@ module.exports = function(Account) {
   Account.prototype.etagesAccessibles = function(batiment, callback) {
     var id = this.id;
     app.models.Etage.find(
-        {include: 'contraintes'},
+        {'where':{'batiment_fk':batiment},'include':'contraintes'},
         function(err, etages) {
           if (err) return callback(err);
           app.models.Etudiant.find(
@@ -111,38 +120,72 @@ module.exports = function(Account) {
   };
 
 /**
- * renvoie les couloirs qui sont accessibles dans un etage donné
- * @param {string} batiment L'id de l'étage dans lequel on recherche des couloirs accessibles
- * @param {Function(Error, string)} callback
+ * retourne l'ensemble des batiments disponibles en y incluant les etages 
+        et les chambres pour un etudiant donne
+ * @param {Function(Error, object)} callback
  */
 
-Account.prototype.couloirsAccessibles = function(etage,callback) {
-	var id = this.id;
-    app.models.Couloir.find(
-        {include: 'contraintes'},
-        function(err, couloirs) {
-          if (err) return callback(err);
-          app.models.Etudiant.find(
-              {'where': {'accountId': id}},
-              function(err, etuds) {
-                if (err) return callback(err);
-                var i = 0;
-                var list = [];
-                while (i < couloirs.length) {
-                  if (f.testAllContraintes(etuds[0], couloirs[i].contraintes())) {
-                    var e = {
-                      'numero': couloirs[i].numcouloir,
-                      'id': couloirs[i].id
-                    };
-                    list.push(e);
-                  }
-                  i++;
-                }
-                callback(null, list);
+
+Account.prototype.chambresAccessibles = function(callback) {
+    var list=[];
+    Account.prototype.batimentsAccessibles( (err,batiments) =>{
+      if(err) 
+        callback(err);
+      
+      else {
+        batiments.forEach( (batiment, ind1, bats) => {
+          Account.prototype.etagesAccessibles(batiment.id,(err,etages) => {
+            if (err) 
+              callback(err);
+            else {
+
+              etages.forEach( (etage , ind, etgs) => {
+                Account.app.models.Etage.findById(etage.id, (err, etg) => {
+                  etg.reservations((err, chambres) => {
+                    if(err) {
+                      callback(err);
+                    }else {
+                      etgs[ind].chambres = chambres;
+                      if(ind == etgs.length -1 )
+                        bats[ind1].etages = etgs;
+                      if((ind1 == bats.length - 1) && (ind == etgs.length - 1)  )
+                        callback(null, {'batiments': bats});
+                    }
+                  });
+                });
+                
               });
-        }
-    );
-};
+            };
+          });
+        });
+      };
+    
+    
+    }); 
+};   
+
+//les différents informations du logement d'un étudiant donné
+
+Account.prototype.logements = function(callback) {
+    Account.app.models.Reservation.findOne(
+      {'where': {'accountId': this.id, 'confirme': true}, 'include': 'chambre'},
+    function(err, reserv) {
+      if (err)
+        callback(err);
+      if (!reserv)
+        callback(null, null);
+      else
+        Account.app.models.Etage.findById(reserv.chambre().etageId, '', function(err, etage) {
+          if (err)
+            callback(err);
+          Account.app.models.Batiment.findById(etage.batimentId, '', function(err, batiment) {
+            if (err)
+              callback(err);
+            callback(null, {'chambre': reserv.chambre(), 'etage': etage, 'batiment': batiment});
+          });
+        });
+    });
+  };
 
 
 /**

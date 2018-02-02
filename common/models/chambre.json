@@ -13,6 +13,10 @@
     "nbremaxoccupants": {
       "type": "number",
       "required": true
+    },
+    "couloir": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
