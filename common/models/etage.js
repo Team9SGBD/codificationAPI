@@ -19,9 +19,12 @@ module.exports = function(Etage) {
       Etage.prototype.__get__chambres( {"include":{"relation":"reservations",
             "scope":{"fields":["position"]}}}
         ,function(err, chambres) {
+          console.log(chambres);
           chambres.filter( function (ch) {
-            if(ch.reservations().length < ch.capacite )
+            if(ch.reservations().length < ch.capacite && ch.etageId.isequal(id)) {
+              console.log(ch.etageId.isequal(id));
               return true;
+            }
           else
             return false;
         });

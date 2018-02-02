@@ -6,7 +6,7 @@
   "mongodb": {
     "host": "",
     "port": 0,
-    "url": "mongodb://bams:passer@ds153577.mlab.com:53577/db_codif",
+    "url": "mongodb://bams:passer@ds117758.mlab.com:17758/codif_db",
     "database": "db_codif",
     "password": "",
     "name": "mongodb",
