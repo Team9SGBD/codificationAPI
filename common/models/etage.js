@@ -1,7 +1,7 @@
 'use strict';
 
 var app = require('../../server/server');
-
+var _ = require("underscore");
 
 module.exports = function(Etage) {
   
@@ -16,13 +16,15 @@ module.exports = function(Etage) {
 
   Etage.prototype.reservations = function(callback) {
       var id = this.id;
-      Etage.prototype.__get__chambres( {"include":{"relation":"reservations",
-            "scope":{"fields":["position"]}}}
+      //console.log(id);
+      Etage.app.models.Chambre.find( {'where':{'etageId':id},'include':'reservations'}
         ,function(err, chambres) {
-          console.log(chambres);
           chambres.filter( function (ch) {
-            if(ch.reservations().length < ch.capacite && ch.etageId.isequal(id)) {
-              console.log(ch.etageId.isequal(id));
+            //console.log(ch.etageId);
+            //console.log(id);
+            //console.log(_.ch.etageId.toNumber()===_.id.toNumber());
+            if(ch.reservations().length < ch.capacite ) {
+              
               return true;
             }
           else
