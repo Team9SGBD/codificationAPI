@@ -20,7 +20,7 @@ module.exports = function(Etage) {
             "scope":{"fields":["position"]}}}
         ,function(err, chambres) {
           chambres.filter( function (ch) {
-            if(ch.reservations().length < ch.capacite && ch.etageId.isequal(id))
+            if(ch.reservations().length < ch.capacite )
               return true;
           else
             return false;

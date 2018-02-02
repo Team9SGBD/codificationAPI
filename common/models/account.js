@@ -73,7 +73,7 @@ module.exports = function(Account) {
                 while (i < b.length) {
                   if (f.testAllContraintes(etuds[0], b[i].contraintes())) {
                     var bat = {
-                      'num': b[i].numbatiment,
+                      'nombatiment': b[i].nombatiment,
                       'id': b[i].id
                     };
                     list.push(bat);
