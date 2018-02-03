@@ -131,24 +131,37 @@ Account.prototype.chambresAccessibles = function(callback) {
     Account.prototype.batimentsAccessibles( (err,batiments) =>{
       if(err) 
         callback(err);
-      
       else {
+        //console.log(batiments);
         batiments.forEach( (batiment, ind1, bats) => {
           Account.prototype.etagesAccessibles(batiment.id,(err,etages) => {
             if (err) 
               callback(err);
             else {
-
+              //console.log(etages);
               etages.forEach( (etage , ind, etgs) => {
                 Account.app.models.Etage.findById(etage.id, (err, etg) => {
                   etg.reservations((err, chambres) => {
                     if(err) {
                       callback(err);
                     }else {
+                      //console.log(chambres);
                       etgs[ind].chambres = chambres;
-                      if(ind == etgs.length -1 )
-                        bats[ind1].etages = etgs;
-                      if((ind1 == bats.length - 1) && (ind == etgs.length - 1)  )
+                      /*chambres.forEach( (ch,ind2,chambre) => {
+                        if(err)
+                          callback(err);
+                        else {
+                          chambre[ind2].batimentId=bats[ind1].id;
+                          console.log(chambre[ind2]);
+                          if(ind2 == chambre.length -1 )
+                            list.concat(chambre);
+                          if( (ind2==chambre.length -1) && (ind1 == bats.length - 1) && (ind == etgs.length - 1) )
+                            callback(null, list);
+                        }
+                      });*/
+                      if(ind == etgs.length -1 ) 
+                       bats[ind1].etages = etgs;
+                      if((ind1 == bats.length - 1) && (ind == etgs.length - 1)  ) 
                         callback(null, {'batiments': bats});
                     }
                   });
@@ -159,8 +172,6 @@ Account.prototype.chambresAccessibles = function(callback) {
           });
         });
       };
-    
-    
     }); 
 };   
 
