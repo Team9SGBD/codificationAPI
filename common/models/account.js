@@ -106,7 +106,7 @@ module.exports = function(Account) {
                 while (i < etages.length) {
                   if (f.testAllContraintes(etuds[0], etages[i].contraintes())) {
                     var e = {
-                      'numero': etages[i].numetage,
+                      'numetage': etages[i].numetage,
                       'id': etages[i].id
                     };
                     list.push(e);
@@ -127,42 +127,60 @@ module.exports = function(Account) {
 
 
 Account.prototype.chambresAccessibles = function(callback) {
-    var list=[];
+    var tablerooms=[];
+    var room = {
+      idchambre: '',
+      nombatiment : '',
+      numetage : '',
+      numchambre : '',
+    };
+
     Account.prototype.batimentsAccessibles( (err,batiments) =>{
       if(err) 
         callback(err);
       else {
         //console.log(batiments);
         batiments.forEach( (batiment, ind1, bats) => {
+          //room = { };
           Account.prototype.etagesAccessibles(batiment.id,(err,etages) => {
             if (err) 
               callback(err);
             else {
               //console.log(etages);
               etages.forEach( (etage , ind, etgs) => {
+                //console.log(etage);
+                //room.numetage = etage.numetage;
                 Account.app.models.Etage.findById(etage.id, (err, etg) => {
                   etg.reservations((err, chambres) => {
                     if(err) {
                       callback(err);
                     }else {
                       //console.log(chambres);
-                      etgs[ind].chambres = chambres;
-                      /*chambres.forEach( (ch,ind2,chambre) => {
+                      //etgs[ind].chambres = chambres;
+                      chambres.forEach( (ch,ind2,chambre) => {
                         if(err)
                           callback(err);
                         else {
-                          chambre[ind2].batimentId=bats[ind1].id;
-                          console.log(chambre[ind2]);
-                          if(ind2 == chambre.length -1 )
-                            list.concat(chambre);
+                          //chambre[ind2].batimentId=bats[ind1].id;
+                          room.nombatiment = bats[ind1].nombatiment;
+                          room.numchambre = chambre[ind2].numchambre;
+                          room.idchambre = chambre[ind2].id;
+                          room.numetage = etg.numetage;
+                          //console.log(room);
+                          tablerooms.push(room);
+                          console.log(tablerooms);
+                          room = { };
+                          //console.log(chambre[ind2]);
+                          /*if(ind2 == chambre.length -1 )
+                            list.concat(chambre);*/
                           if( (ind2==chambre.length -1) && (ind1 == bats.length - 1) && (ind == etgs.length - 1) )
-                            callback(null, list);
+                            callback(null, tablerooms);
                         }
-                      });*/
-                      if(ind == etgs.length -1 ) 
+                      });
+                      /*if(ind == etgs.length -1 ) 
                        bats[ind1].etages = etgs;
                       if((ind1 == bats.length - 1) && (ind == etgs.length - 1)  ) 
-                        callback(null, {'batiments': bats});
+                        callback(null, {'batiments': bats});*/
                     }
                   });
                 });
