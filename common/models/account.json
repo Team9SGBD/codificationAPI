@@ -30,6 +30,20 @@
       "accessType": "EXECUTE",
       "principalType": "ROLE",
       "principalId": "$everyone",
+      "permission": "login"
+    },
+
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "login"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "batimentsAccessibles"
     },
@@ -68,6 +82,7 @@
       "permission": "ALLOW",
       "property": "login"
     }
+    
   ],
   "methods": {
     "batimentsAccessibles": {
@@ -153,9 +168,9 @@
         }
       ],
       "description": "retourne l'ensemble des batiments disponibles en y incluant les etages et les chambres pour un etudiant donne",
-      "http": [ 
+      "http": [
         {
-        "path": "/chambres_Accessibles",
+          "path": "/chambres_Accessibles",
           "verb": "get"
         }
       ]
