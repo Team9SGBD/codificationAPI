@@ -38,41 +38,41 @@
   },
   "Account": {
     "dataSource": "mongodb",
-    "public": true,
+    "public": false,
     "options": {
       "emailVerificationRequired": true
     }
   },
   "Etudiant": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "Batiment": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "Etage": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "Chambre": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "Contraintes": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "CodeReservation": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "Email": {
     "dataSource": "Email"
   },
   "Reservation": {
     "dataSource": "mongodb",
-    "public": true,
+    "public": false,
     "options": {
       "remoting": {
         "sharedMethods": {
@@ -86,15 +86,15 @@
   },
   "PeriodeCodification": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "Critere": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "Echange": {
     "dataSource": "mongodb",
-    "public": true
+    "public": false
   },
   "data": {
     "dataSource": "mongodb",
