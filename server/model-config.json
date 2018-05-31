@@ -95,5 +95,13 @@
   "Echange": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "data": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "utilisateur": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }

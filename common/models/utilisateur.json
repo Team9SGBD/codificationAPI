@@ -1,0 +1,22 @@
+{
+  "name": "utilisateur",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "prenom": {
+      "type": "string",
+      "required": true
+    },
+    "nom": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

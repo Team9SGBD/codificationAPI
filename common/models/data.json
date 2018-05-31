@@ -1,0 +1,34 @@
+{
+  "name": "data",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "latitude": {
+      "type": "string",
+      "required": true
+    },
+    "longitude": {
+      "type": "string",
+      "required": true
+    },
+    "humidite": {
+      "type": "string",
+      "required": true
+    },
+    "temperature": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

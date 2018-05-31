@@ -32,7 +32,6 @@
       "principalId": "$everyone",
       "permission": "login"
     },
-
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
@@ -82,7 +81,6 @@
       "permission": "ALLOW",
       "property": "login"
     }
-    
   ],
   "methods": {
     "batimentsAccessibles": {
