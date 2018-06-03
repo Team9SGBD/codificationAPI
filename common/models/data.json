@@ -7,19 +7,19 @@
   },
   "properties": {
     "latitude": {
-      "type": "string",
+      "type": "number",
       "required": true
     },
     "longitude": {
-      "type": "string",
+      "type": "number",
       "required": true
     },
     "humidite": {
-      "type": "string",
+      "type": "number",
       "required": true
     },
     "temperature": {
-      "type": "string",
+      "type": "number",
       "required": true
     },
     "date": {
